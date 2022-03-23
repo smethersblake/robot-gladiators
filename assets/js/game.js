@@ -64,7 +64,6 @@ var startGame = function (){
             // restest enemy.health before startting new fight
             pickedEnemyObj.health = randomNumber(40, 60);
             
-            debugger;
             fight(pickedEnemyObj);
 
             //if we'er not at the last enemy in the array
@@ -123,12 +122,21 @@ var shop = function(){
     }
 }
 //function to generate a random numeric value
-var randomNumber = function() {
+var randomNumber = function(min, max) {
     var value = Math.floor(Math.random() * (max - min + 1) + min);
     return value;
 }
+
+var getPlayerName = function () {
+    var name = "";
+    while (name === "" || name === null) {
+        window.prompt ("What is the name of your robot?");
+        return name;
+    }
+
+}
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -159,6 +167,7 @@ var playerInfo = {
         }
     
 };
+debugger;
 var enemyInfo = [
     {
         name: "Roberto",
