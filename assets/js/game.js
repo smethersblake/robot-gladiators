@@ -30,7 +30,8 @@ var fight = function(enemyName) {
                 break;
             }
         }
-        enemyHealth = enemyHealth - playerAttack;
+        var damage = randomNumber(playerAttack - 3, playerAttack)
+        enemyHealth = Math.max(0, enemyHealth - damage);
         // Log a result message to the console so we know that it worked.
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
@@ -45,7 +46,8 @@ var fight = function(enemyName) {
                 window.alert(enemyName+ " still has " + enemyHealth + " health left.")
             }
             // Subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value in the 'playerHealth' variable.
-            playerHealth = playerHealth - enemyAttack;
+            var damage = randomNumber(enemyAttack - 3, enemyAttack)
+            playerHealth = Math.max(0, playerHealth - damage);
             //Log a resulting message to the console so we know that it worked.
             console.log (
                 enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
@@ -72,7 +74,7 @@ var startGame = function (){
             // replay option
             var pickedEnemyName = enemyNames[i];
             // restest enemyHealth before startting new fight
-            enemyHealth = 50;
+            enemyHealth = randomNumber(40, 60);
             
             debugger;
             fight(pickedEnemyName);
@@ -147,6 +149,11 @@ var shop = function(){
             window.alert("You did not pick a vaild option. Try again.");
             shop();
     }
+}
+//function to generate a random numeric value
+var randomNumber = function() {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
+    return value;
 }
 // start the game when the page loads
 startGame();
